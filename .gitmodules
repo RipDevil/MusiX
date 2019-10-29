@@ -1,0 +1,3 @@
+[submodule "music-app/music-portal-frontend"]
+	path = music-app/music-portal-frontend
+	url = https://github.com/Rusnura/music-portal-frontend.git
