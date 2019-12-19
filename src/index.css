@@ -1,0 +1,19 @@
+/* Main styles */
+.centrify {
+    min-height: 100vh;
+}
+
+/* Auth page */
+
+/* Loading page */
+.load-animate {
+    transition: 1s;
+}
+
+.loading-color {
+    color: #eaeaea;
+}
+
+.loading-color-confirm {
+    color: #8b6e6e;
+}
