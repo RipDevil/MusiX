@@ -17,3 +17,9 @@
 .loading-color-confirm {
     color: #8b6e6e;
 }
+
+/* 404 page */
+.header-404 {
+    font-size: 13rem !important;
+    margin: 0 !important;
+}

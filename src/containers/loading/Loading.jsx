@@ -11,6 +11,6 @@ const Loading = () => {
           </Col>
         </Row>
     )
-}
+};
 
 export default Loading;

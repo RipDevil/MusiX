@@ -1,9 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Router, Route, Switch } from "react-router-dom";
+// import PropTypes from "prop-types";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 
-import Authorization from '../auth/Authorization';
+// import Authorization from '../auth/Authorization';
 import Loading from '../loading/Loading';
+import NotFound from '../notFound/NotFound';
 
 class App extends React.Component {
   //  There will be links for calls and roles
@@ -28,20 +29,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <Loading/>
+      <>
+        <Router history={this.props.history}>
+          <Switch>
+            <Route exact path={"/login"} component={Loading} />
+            <Route exact path={"/"} component={() => <div>Here will be <strong>musix</strong> player</div>} />
+            <Route path='*' component={NotFound} />
+          </Switch>
+        </Router>
+      </>
     );
   }
 }
-
-// function App() {
-//   return (
-//       <Row className="centrify" type="flex" justify="center" align="middle">
-//         <Col>
-//             <i class="fa fa-circle-o-notch fa-spin fa-5x fa-fw loading-color"></i>
-//             {/* <i class="fa fa-check fa-4x fa-fw"></i> */}
-//         </Col>
-//       </Row>
-//   );
-// }
 
 export default App;
