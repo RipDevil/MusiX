@@ -23,3 +23,12 @@
     font-size: 13rem !important;
     margin: 0 !important;
 }
+
+.subHeader-404 {
+    color: #999;
+}
+
+.weresorry-404 {
+    height: 300px;
+    width: auto;
+}
