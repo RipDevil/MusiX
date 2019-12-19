@@ -5,27 +5,26 @@ import { Router, Route, Switch } from "react-router-dom";
 // import Authorization from '../auth/Authorization';
 import Loading from 'containers/loading/Loading';
 import NotFound from 'containers/notFound/NotFound';
+import WrapWitchAuthCheck from "../auth/Authorization";
 
 class App extends React.Component {
-  //  There will be links for calls and roles
-  // static propTypes = {
-  //   links: PropTypes.object,
-  //   roles: PropTypes.object,
-  // }
-
   constructor(props) {
     super(props);
 
+    // TODO: use store (effector)
+
     this.state = {
-      UserPermission: null,
+      Permission: WrapWitchAuthCheck(true) // TODO: Authorization(false),
     };
+
+    console.log(this.state)
   }
 
-  componentDidUpdate(prevProps) {
-    prevProps.roles !== this.props.roles && this.setState({
-      UserPermission: this.props.roles.user,
-    })
-  }
+  // componentDidUpdate() {
+  //   this.setState({
+  //     Permission: WrapWitchAuthCheck(false)
+  //   })
+  // }
 
   render() {
     return (
@@ -33,7 +32,7 @@ class App extends React.Component {
         <Router history={this.props.history}>
           <Switch>
             <Route exact path={"/login"} component={Loading} />
-            <Route exact path={"/"} component={() => <div>Here will be <strong>musix</strong> player</div>} />
+            <Route exact path={"/"} component={this.state.Permission(() => <div>TODO: WRAPPED COMPONENT</div>)} />
             <Route path='*' component={NotFound} />
           </Switch>
         </Router>
