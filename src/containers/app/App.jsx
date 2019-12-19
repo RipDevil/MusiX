@@ -1,10 +1,10 @@
 import React from "react";
 // import PropTypes from "prop-types";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
 // import Authorization from '../auth/Authorization';
-import Loading from '../loading/Loading';
-import NotFound from '../notFound/NotFound';
+import Loading from 'containers/loading/Loading';
+import NotFound from 'containers/notFound/NotFound';
 
 class App extends React.Component {
   //  There will be links for calls and roles

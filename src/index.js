@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from 'history';
 
-import App from './containers/app/App';
+import App from 'containers/app/App';
 
-import './index.css';
+import 'index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'antd/dist/antd.css';

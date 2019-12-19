@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Row, Col, Typography } from "antd";
-import sorry1 from '../../images/notFound/404.jpg';
+import sorry1 from 'images/notFound/404.jpg';
 
 // TODO: implement 3 random weresorry pics
 const NotFound = () => {
