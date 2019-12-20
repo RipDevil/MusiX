@@ -1,0 +1,1 @@
+export const ID_TOKEN = 'access_token';

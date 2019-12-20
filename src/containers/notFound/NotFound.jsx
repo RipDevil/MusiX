@@ -6,7 +6,7 @@ import sorry1 from 'images/notFound/404.jpg';
 // TODO: implement 3 random weresorry pics
 const NotFound = () => {
     const [redirect, setRedirect] = useState(false);
-    setTimeout(() => setRedirect(true), 5000);
+    setTimeout(() => setRedirect(true), 8000);
     return (
         <>
             { redirect && <Redirect to="/" /> }
