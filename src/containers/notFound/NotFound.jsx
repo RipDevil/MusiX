@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { Row, Col, Typography } from "antd";
 import sorry1 from 'images/notFound/404.jpg';
 
@@ -27,4 +27,4 @@ const NotFound = () => {
     );
 };
 
-export default NotFound;
+export default withRouter(NotFound);

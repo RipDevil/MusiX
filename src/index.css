@@ -3,7 +3,15 @@
     min-height: 100vh;
 }
 
-/* Auth page */
+/* Login page */
+.login-header {
+    font-size: 4rem !important;
+    cursor: pointer;
+}
+
+.login-form {
+    width: 25rem;
+}
 
 /* Loading page */
 .load-animate {

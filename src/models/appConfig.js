@@ -15,8 +15,7 @@ const fetchConfig = createEffect({
         try {
             const url = `/config.json`;
             const response = callApi({ url });
-            // FIXME: make it w/o delay
-            setTimeout(() => {resolve(response);}, 1500);
+            resolve(response);
         }
         catch (error) {
             setTimeout(() => {reject(error);}, 1500);

@@ -2,6 +2,10 @@
     "webapp": {
         "application": "0.0.1"
     },
-    "services": {},
-    "links": {}
+    "services": {
+
+    },
+    "links": {
+        "external_link": "//github.com/RipDevil"
+    }
 }
