@@ -20,16 +20,16 @@ export const callApi = ({ url, config }) => {
   })
 }
 
-// //Auth only
-// export const authApi = ({ url, config }) => {
-//   return axios({
-//     url,
-//     mode: 'cors',
-//     headers: {
-//       'Authorization': 'Basic ' + btoa("authservice:IpDegBarwut8"),
-//       'Content-Type': 'application/x-www-form-urlencoded',
-//       'Accept': 'application/json',
-//     },
-//     ...config
-//   })
-// }
+//Auth only
+export const authApi = ({ url, config }) => {
+  return axios({
+    url,
+    mode: 'cors',
+    headers: {
+      'Authorization': 'Basic ' + btoa("authservice:IpDegBarwut8"),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    ...config
+  })
+}

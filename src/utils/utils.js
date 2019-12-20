@@ -1,6 +1,8 @@
 export const replaceHost = config => {
-    console.log("config in replace host", config);
-    return config.data;
+    const MUSIC_SERVICE = config.data.services.music_service;
+    return JSON.parse(JSON.stringify(config.data)
+      .replace(/{MUSIC_SERVICE}/g, MUSIC_SERVICE)
+    );
 };
 
 export const isEmptyObj = obj => {

@@ -3,9 +3,11 @@
         "application": "0.0.1"
     },
     "services": {
-
+        "music_service": "http://213.59.157.203"
     },
     "links": {
-        "external_link": "//github.com/RipDevil"
+        "external_link": "//github.com/RipDevil",
+        "register": "{MUSIC_SERVICE}/api/register",
+        "login": "{MUSIC_SERVICE}/api/authenticate"
     }
 }

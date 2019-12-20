@@ -1,4 +1,4 @@
-import { createStore, createStoreObject, createEvent, createEffect } from "effector";
+import { createStore, createEffect } from "effector";
 import { callApi } from 'utils/ApiUtils';
 import { replaceHost, } from 'utils/utils';
 
@@ -11,20 +11,13 @@ const init = {
 const $config = createStore(init);
 
 const fetchConfig = createEffect({
-    handler: () => new Promise((resolve, reject) => {
-        try {
-            const url = `/config.json`;
-            const response = callApi({ url });
-            resolve(response);
-        }
-        catch (error) {
-            setTimeout(() => {reject(error);}, 1500);
-        }
-    })
+    handler: () => {
+        return callApi({url: "/config.json"});
+    }
 });
 
 $config
-    .on(fetchConfig.pending, (state, pending) => { return { ...state, isFetching: pending } })
+    .on(fetchConfig.pending, (state, pending) => Object({ ...state, isFetching: pending }))
     .on(fetchConfig.done, (_, { result: config }) => {
         return {
             isFetching: false,

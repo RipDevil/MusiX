@@ -1,17 +1,18 @@
 import React from "react";
 import { useStore } from "effector-react";
 import { Redirect, withRouter } from "react-router-dom";
-import { Row, Col, Typography, Form, Input, Icon, Checkbox, Button } from "antd";
+import { Row, Col, Typography, Form, Input, Icon, Button } from "antd";
 
 import { getRandomColor } from "utils/utils";
 import { $config } from "models/appConfig";
+
+import { auth } from "models/login";
 
 
 const Login = ({ IsLoggedIn }) => {
     const [headerColor, setHeaderColor, GetRandomColor] = [...React.useState({ color: "#000" }), () => { getRandomColor(setHeaderColor) }];
     const { config } = useStore($config);
     const [signUp, setSignUp] = React.useState(false);
-
     return (
         <>
             {IsLoggedIn ? <Redirect to="/" /> : ''}
@@ -54,7 +55,12 @@ const Login = ({ IsLoggedIn }) => {
                                     {!signUp ? "Sign Up" : "Sign In"}
                                 </Button>
 
-                                <Button type={signUp ? "danger" : "primary"} htmlType="submit">
+                                <Button onClick={() => {auth({ 
+                                            signIn: signUp,
+                                            params: {}
+                                        })
+                                    }
+                                } type={signUp ? "danger" : "primary"} htmlType="submit">
                                     {signUp ? "Sign Up" : "Sign In"}
                                 </Button>
                             </Row>
