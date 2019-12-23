@@ -12,18 +12,25 @@ import {
     nameApi,
     lastnameApi,
     $form,
-    $isRegister,
     setIsRegister,
-    auth } from "models/login";
+    auth } from "models/loginForm";
 
 
 const Login = ({ IsLoggedIn }) => {
     const [headerColor, setHeaderColor, GetRandomColor] = [...React.useState({ color: "#000" }), () => { getRandomColor(setHeaderColor) }];
     const { config } = useStore($config);
     const formStore = useStore($form);
-    const isRegister = useStore($isRegister);
     const log = () => {
-        console.log(formStore);
+        // console.log(formStore);
+        auth({ 
+            signIn: formStore.isRegister, 
+            params: {
+                username: formStore.login.value,
+                password: formStore.password.value,
+                name: formStore.name.value,
+                lastname: formStore.lastname.value
+            }
+        })
     };
     return (
         <>
@@ -34,8 +41,10 @@ const Login = ({ IsLoggedIn }) => {
                         <Typography.Title onMouseEnter={GetRandomColor} onClick={() => window.open(config.links.external_link)} style={headerColor} className="login-header" copyable={false}>Musi<sup><strong><i className="fa fa-times" aria-hidden="true"></i></strong></sup></Typography.Title>
                     </Row>
 
+                    {formStore.isRegister && <Row type="flex" justify="start" align="middle"><Typography.Text>Sign up</Typography.Text></Row>}
+
                     <Form onSubmit={(e) => { e.preventDefault(); }} className="login-form">
-                        <Form.Item required>
+                        <Form.Item>
                             <Input
                                 value={formStore.login.value}
                                 onChange={(e) => loginApi.changed(e.target.value)}
@@ -43,7 +52,7 @@ const Login = ({ IsLoggedIn }) => {
                                 placeholder="Login"
                             />
                         </Form.Item>
-                        <Form.Item required>
+                        <Form.Item>
                             <Input
                                 value={formStore.password.value}
                                 onChange={(e) => passwordApi.changed(e.target.value)}
@@ -52,9 +61,9 @@ const Login = ({ IsLoggedIn }) => {
                                 placeholder="Password"
                             />
                         </Form.Item>
-                        {isRegister &&
+                        {formStore.isRegister &&
                             <>
-                                <Form.Item required>
+                                <Form.Item>
                                     <Input
                                         value={formStore.name.value}
                                         onChange={(e) => nameApi.changed(e.target.value)}
@@ -71,12 +80,12 @@ const Login = ({ IsLoggedIn }) => {
                             </>}
                         <Form.Item>
                             <Row type="flex" justify="end">
-                                <Button onClick={() => { setIsRegister(!isRegister); }} type="link" htmlType="button">
-                                    {!isRegister ? "Sign Up" : "Sign In"}
+                                <Button onClick={() => { setIsRegister(!formStore.isRegister); }} type="link" htmlType="button">
+                                    {!formStore.isRegister ? "Sign Up" : "Sign In"}
                                 </Button>
 
-                                <Button onClick={log} type={isRegister ? "danger" : "primary"} htmlType="submit" disabled={!formStore.canLog}>
-                                    {isRegister ? "Sign Up" : "Sign In"}
+                                <Button onClick={log} type={formStore.isRegister ? "danger" : "primary"} htmlType="submit" disabled={!formStore.canLog}>
+                                    {formStore.isRegister ? "Sign Up" : "Sign In"}
                                 </Button>
                             </Row>
                         </Form.Item>

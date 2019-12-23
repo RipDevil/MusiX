@@ -18,7 +18,7 @@ const $lastname = createStore(init(""));
 const $canLog = createStore(false);
 const $isRegister = createStore(false);
 
-const $form = createStoreObject({ login: $login, password: $password, name: $name, lastname: $lastname, canLog: $canLog});
+const $form = createStoreObject({ login: $login, password: $password, name: $name, lastname: $lastname, canLog: $canLog, isRegister: $isRegister});
 
 const clearForm = createEvent();
 const logInEnabled = createEvent();
@@ -26,15 +26,18 @@ const setIsRegister = createEvent();
 
 const auth = createEffect({
     handler: ({ signIn, params }) => {
+        !signIn && delete params.name && delete params.lastname;
         const localConfig = $config.getState().config;
         const url = signIn ? localConfig.links.register : localConfig.links.login;
         const config = {
             method: 'POST',
-            data: {
+            data: JSON.stringify({
                 ...params
-            },
+            }),
         }
-        return authApi({url, config});
+        return authApi({url, config})
+            .then((a) => { console.log(a) })
+            .catch((e) => { console.error(e.data.status, e.data.message) });
     }
 });
 
@@ -42,7 +45,7 @@ const loginApi = createApi($login, apiFactory());
 const passwordApi = createApi($password, {...apiFactory(),
     changed: (_, val) => {
         val = val.replace(/\W*/g, '');
-        return val.length < 8 ? init(val, "Yours password is too weak! It should be at least 8 characters long") : init(val);
+        return val.length < 6 ? init(val, "Yours password is too weak! It should be at least 8 characters long") : init(val);
     }});
 const nameApi = createApi($name, apiFactory());
 const lastnameApi = createApi($lastname, apiFactory());
@@ -51,20 +54,15 @@ $canLog.on(logInEnabled, (_, payload) => Boolean(payload));
 $isRegister.on(setIsRegister, (_, payload) => Boolean(payload));
 
 $form.watch((state, payload) => {
-    console.log("Login form state: ", state);
-    // TODO: separate login and register
-    if (state.isRegister) {
-        logInEnabled(state.login.value && state.password.value && !state.password.error && state.name.value && state.lastname.value);
-    } else {
-        logInEnabled(state.login.value && state.password.value && !state.password.error);
-    }
-    
+    // console.log("Login form state: ", state);
+    logInEnabled(state.login.value && state.password.value && !Boolean(state.password.error) && (state.isRegister ? Boolean(state.name.value && state.lastname.value) : true));
 });
 
 $form
     .on(setIsRegister, () => {
         nameApi.clear();
         lastnameApi.clear();
+        logInEnabled(false);
     })
     .reset(clearForm)
     .reset(auth.done);
@@ -76,7 +74,6 @@ export {
     lastnameApi,
     $form,
     auth,
-    $isRegister,
     setIsRegister
 }
 
