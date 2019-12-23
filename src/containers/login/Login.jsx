@@ -15,6 +15,7 @@ import {
     setIsRegister,
     auth } from "models/loginForm";
 
+import { userLogged } from "models/user";
 
 const Login = ({ IsLoggedIn }) => {
     const [headerColor, setHeaderColor, GetRandomColor] = [...React.useState({ color: "#000" }), () => { getRandomColor(setHeaderColor) }];
@@ -31,6 +32,13 @@ const Login = ({ IsLoggedIn }) => {
                 lastname: formStore.lastname.value
             }
         })
+        .then(({ data }) => { 
+            userLogged({
+                login: formStore.login.value,
+                token: data.token
+            })
+        })
+        .catch((e) => { console.error(e.data.status, e.data.message) })
     };
     return (
         <>

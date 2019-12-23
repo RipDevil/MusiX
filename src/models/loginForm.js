@@ -1,3 +1,6 @@
+// TODO: refactor a bit
+// I think, that it'd be better
+// apis stores etc
 import { createStore, createStoreObject, createApi, createEffect, createEvent } from "effector";
 import { authApi, callApi } from 'utils/ApiUtils';
 
@@ -35,9 +38,7 @@ const auth = createEffect({
                 ...params
             }),
         }
-        return authApi({url, config})
-            .then((a) => { console.log(a) })
-            .catch((e) => { console.error(e.data.status, e.data.message) });
+        return authApi({url, config});
     }
 });
 

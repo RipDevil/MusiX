@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import { useStore } from "effector-react";
 import { Router, Route, Switch } from "react-router-dom";
 
 import AppConfig from 'containers/app/AppConfig';
@@ -7,15 +7,18 @@ import AppConfig from 'containers/app/AppConfig';
 import NotFound from 'containers/notFound/NotFound';
 import Wrap from "containers/permissionWrapper/Wrapper";
 import Login from "containers/login/Login";
+import WithLayout from "containers/layout/Layout"
+
+import { $user, logout } from "models/user";
 
 const App = ({ history }) => {
-  const [permission] = React.useState(false);
+  const { isLogged } = useStore($user);
   return (
     <AppConfig>
       <Router history={history}>
         <Switch>
-          <Route exact path={"/login"} component={() => <Login IsLoggedIn={permission} />} />
-          <Route exact path={"/"} component={() => <Wrap IsLoggedIn={permission} Component={() => <div>HERE WILL BE MUSIX</div>} />} />
+          <Route exact path={"/login"} component={() => <Login IsLoggedIn={isLogged} />} />
+          <Route exact path={"/"} component={() => <Wrap IsLoggedIn={isLogged} Component={() => (<WithLayout component={<div>MusiX</div>} isLoggedIn={isLogged} />)} />} />
           <Route path='*' component={NotFound} />
         </Switch>
       </Router>
