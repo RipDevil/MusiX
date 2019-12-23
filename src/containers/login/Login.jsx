@@ -6,13 +6,25 @@ import { Row, Col, Typography, Form, Input, Icon, Button } from "antd";
 import { getRandomColor } from "utils/utils";
 import { $config } from "models/appConfig";
 
-import { auth } from "models/login";
+import {
+    loginApi,
+    passwordApi,
+    nameApi,
+    lastnameApi,
+    $form,
+    $isRegister,
+    setIsRegister,
+    auth } from "models/login";
 
 
 const Login = ({ IsLoggedIn }) => {
     const [headerColor, setHeaderColor, GetRandomColor] = [...React.useState({ color: "#000" }), () => { getRandomColor(setHeaderColor) }];
     const { config } = useStore($config);
-    const [signUp, setSignUp] = React.useState(false);
+    const formStore = useStore($form);
+    const isRegister = useStore($isRegister);
+    const log = () => {
+        console.log(formStore);
+    };
     return (
         <>
             {IsLoggedIn ? <Redirect to="/" /> : ''}
@@ -25,43 +37,46 @@ const Login = ({ IsLoggedIn }) => {
                     <Form onSubmit={(e) => { e.preventDefault(); }} className="login-form">
                         <Form.Item required>
                             <Input
+                                value={formStore.login.value}
+                                onChange={(e) => loginApi.changed(e.target.value)}
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 placeholder="Login"
                             />
                         </Form.Item>
                         <Form.Item required>
                             <Input
+                                value={formStore.password.value}
+                                onChange={(e) => passwordApi.changed(e.target.value)}
                                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 type="password"
                                 placeholder="Password"
                             />
                         </Form.Item>
-                        {signUp &&
+                        {isRegister &&
                             <>
                                 <Form.Item required>
                                     <Input
+                                        value={formStore.name.value}
+                                        onChange={(e) => nameApi.changed(e.target.value)}
                                         placeholder="Name"
                                     />
                                 </Form.Item>
                                 <Form.Item>
                                     <Input
+                                        value={formStore.lastname.value}
+                                        onChange={(e) => lastnameApi.changed(e.target.value)}
                                         placeholder="Last name"
                                     />
                                 </Form.Item>
                             </>}
                         <Form.Item>
                             <Row type="flex" justify="end">
-                                <Button onClick={() => { setSignUp(!signUp) }} type="link" htmlType="button">
-                                    {!signUp ? "Sign Up" : "Sign In"}
+                                <Button onClick={() => { setIsRegister(!isRegister); }} type="link" htmlType="button">
+                                    {!isRegister ? "Sign Up" : "Sign In"}
                                 </Button>
 
-                                <Button onClick={() => {auth({ 
-                                            signIn: signUp,
-                                            params: {}
-                                        })
-                                    }
-                                } type={signUp ? "danger" : "primary"} htmlType="submit">
-                                    {signUp ? "Sign Up" : "Sign In"}
+                                <Button onClick={log} type={isRegister ? "danger" : "primary"} htmlType="submit" disabled={!formStore.canLog}>
+                                    {isRegister ? "Sign Up" : "Sign In"}
                                 </Button>
                             </Row>
                         </Form.Item>

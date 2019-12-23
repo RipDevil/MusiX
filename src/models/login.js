@@ -16,11 +16,13 @@ const $password = createStore(init(""));
 const $name = createStore(init(""));
 const $lastname = createStore(init(""));
 const $canLog = createStore(false);
+const $isRegister = createStore(false);
 
-const $form = createStoreObject({ $login, $password, $name, $lastname, $canLog });
+const $form = createStoreObject({ login: $login, password: $password, name: $name, lastname: $lastname, canLog: $canLog});
 
 const clearForm = createEvent();
 const logInEnabled = createEvent();
+const setIsRegister = createEvent();
 
 const auth = createEffect({
     handler: ({ signIn, params }) => {
@@ -46,14 +48,26 @@ const nameApi = createApi($name, apiFactory());
 const lastnameApi = createApi($lastname, apiFactory());
 
 $canLog.on(logInEnabled, (_, payload) => Boolean(payload));
+$isRegister.on(setIsRegister, (_, payload) => Boolean(payload));
 
 $form.watch((state, payload) => {
-    // console.log("Login form state: ", state);
+    console.log("Login form state: ", state);
     // TODO: separate login and register
-    logInEnabled(state.$login.value && state.$password.value && !state.$password.error && state.$name.value);
+    if (state.isRegister) {
+        logInEnabled(state.login.value && state.password.value && !state.password.error && state.name.value && state.lastname.value);
+    } else {
+        logInEnabled(state.login.value && state.password.value && !state.password.error);
+    }
+    
 });
 
-$form.reset(clearForm).reset(auth.done);
+$form
+    .on(setIsRegister, () => {
+        nameApi.clear();
+        lastnameApi.clear();
+    })
+    .reset(clearForm)
+    .reset(auth.done);
 
 export {
     loginApi,
@@ -61,6 +75,8 @@ export {
     nameApi,
     lastnameApi,
     $form,
-    auth
+    auth,
+    $isRegister,
+    setIsRegister
 }
 
