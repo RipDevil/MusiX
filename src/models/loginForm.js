@@ -46,7 +46,7 @@ const loginApi = createApi($login, apiFactory());
 const passwordApi = createApi($password, {...apiFactory(),
     changed: (_, val) => {
         val = val.replace(/\W*/g, '');
-        return val.length < 6 ? init(val, "Yours password is too weak! It should be at least 8 characters long") : init(val);
+        return val.length < 6 ? init(val, "Your password is too weak! It should be at least 8 characters long") : init(val);
     }});
 const nameApi = createApi($name, apiFactory());
 const lastnameApi = createApi($lastname, apiFactory());
