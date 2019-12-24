@@ -6,6 +6,7 @@ import { VOLUME } from "consts/utils";
 import { $config } from "models/appConfig";
 
 const MusicPlayer = () => {
+    // TODO: transfer to Effector?
     const { config } = useStore($config);
     const [playing, _setPlaying, setPlaying] = [...React.useState(false), () => _setPlaying(!playing)];
     const [played, setPlayed] = React.useState(0); // in %
@@ -21,7 +22,7 @@ const MusicPlayer = () => {
             {showInfo && "Test song - name"}
         </Layout.Footer>
         <Layout.Footer onMouseEnter={() => setShowInfo(true)} onMouseLeave={() => setShowInfo(false)}>
-            <Row type="flex" justify="start" align="middle" style={{height: "100%"}}>
+            <Row type="flex" justify="center" align="middle" style={{height: "100%"}}>
                 <Col>
                     <Button type="link"><i className="fa fa-fast-backward"></i></Button>
                     <Button type="link" onClick={setPlaying}><i className={`fa fa-${playing ? "stop" : "play"}`}></i></Button>

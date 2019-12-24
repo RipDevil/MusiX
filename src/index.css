@@ -107,6 +107,7 @@
 
 /* Footer */
 .ant-layout-footer {
+    z-index: 100;
     background: rgb(245, 245, 245);
     padding: 0 25px 0 25px;
     height: 60px;
@@ -146,4 +147,40 @@
     position: absolute;
     height: 200px;
     width: auto;
+}
+
+/* Main page */
+.scrollable-content {
+    overflow-x:auto;
+}
+
+/* Playlists */
+
+.playlist {
+    cursor: pointer;
+    width: 220px;
+    height: 300px;
+    border-radius: 2px;
+    transition: 200ms;
+    background-image: url('./images/playlistexample.jpg');
+    margin: 0 10px 60px 10px;
+}
+
+.playlist:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+}
+
+.playlist-title {
+    position: absolute;
+    bottom: -50px;
+    width: 200px;
+    left: 10px;
+    margin: 0;
+}
+
+.playlist-private {
+    color: rgb(255, 5, 50);
+    position: absolute;
+    left: 5px;
+    top: 5px;
 }

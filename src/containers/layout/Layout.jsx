@@ -8,7 +8,7 @@ const WithLayout = Component => {
     return () => (
         <Layout id="wrapper">
             <Header />
-            <Layout.Content className="p-3">
+            <Layout.Content className="p-3 scrollable-content">
                     <Component />
             </Layout.Content>
             <MusicPlayer />
