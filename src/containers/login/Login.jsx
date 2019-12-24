@@ -23,7 +23,7 @@ const Login = ({ IsLoggedIn }) => {
     const formStore = useStore($form);
     const log = () => {
         // console.log(formStore);
-        auth({ 
+        auth({
             signIn: formStore.isRegister, 
             params: {
                 username: formStore.login.value,
@@ -32,7 +32,7 @@ const Login = ({ IsLoggedIn }) => {
                 lastname: formStore.lastname.value
             }
         })
-        .then(({ data }) => { 
+        .then(({ data }) => {
             userLogged({
                 login: formStore.login.value,
                 token: data.token
@@ -62,6 +62,7 @@ const Login = ({ IsLoggedIn }) => {
                         </Form.Item>
                         <Form.Item>
                             <Input
+                                className={formStore.password.error ? "input-error" : ""}
                                 value={formStore.password.value}
                                 onChange={(e) => passwordApi.changed(e.target.value)}
                                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}

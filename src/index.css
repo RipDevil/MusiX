@@ -13,6 +13,10 @@
     width: 25rem;
 }
 
+.input-error input {
+    border-color: red !important;
+}
+
 /* Loading page */
 .load-animate {
     transition: 1s;
