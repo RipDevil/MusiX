@@ -23,10 +23,11 @@ const clearToken = logout.map(() => {
 // });
 
 $user
-    .on(userLogged, (_, {login, token}) => {
+    .on(userLogged, (state, {login, token}) => {
         localStorage.setItem(ID_TOKEN, token);
 
         return {
+            ...state,
             login,
             isLogged: true
         }

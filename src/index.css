@@ -1,9 +1,11 @@
 /* Main styles */
+
 .centrify {
     min-height: 100vh;
 }
 
 /* Login page */
+
 .login-header {
     font-size: 4rem !important;
     cursor: pointer;
@@ -18,6 +20,7 @@
 }
 
 /* Loading page */
+
 .load-animate {
     transition: 1s;
 }
@@ -31,6 +34,7 @@
 }
 
 /* 404 page */
+
 .header-404 {
     font-size: 13rem !important;
     margin: 0 !important;
@@ -53,15 +57,20 @@
 
 .menu-thick {
     height: 30px !important;
-    background: rgb(230, 230, 230) !important;
+    background: rgb(243, 243, 243) !important;
 }
+
+.ant-layout-content {
+    background-color: #FFF;
+}
+
+/* Header */
 
 .ant-layout-header {
     transition: 100ms;
-    height: 10px;
+    height: 16px;
     padding: 0 0;
     line-height: 0;
-    top: 50%;
     background: rgb(245, 245, 245);
 }
 
@@ -74,7 +83,7 @@
     height: 100%;
 }
 
-.ant-layout-header  button {
+.ant-layout-header button {
     height: 100%;
     width: 90px;
     color: rgba(0, 0, 0, 0.500);
@@ -83,16 +92,58 @@
     transition: 0s;
 }
 
-.ant-layout-header  button:focus, .ant-layout-header  button:active {
+.ant-layout-header button:focus, .ant-layout-header button:active:not(:hover),
+.ant-layout-footer button:focus, .ant-layout-footer button:active:not(:hover) {
     background-color: transparent;
     border-color: #d9d9d90e;
+    color: rgba(0, 0, 0, 0.500);
 }
 
-.ant-layout-header button:hover {
+.ant-layout-header button:hover, .ant-layout-footer button:hover {
     background-color: transparent;
     border-color: #d9d9d90e;
+    color: #40a9ff;
 }
 
-.ant-layout-content {
-    background-color: #FFF;
+/* Footer */
+.ant-layout-footer {
+    background: rgb(245, 245, 245);
+    padding: 0 25px 0 25px;
+    height: 60px;
+}
+
+.ant-layout-footer button {
+    height: 100%;
+    width: 25px;
+    color: rgba(0, 0, 0, 0.500);
+    background-color: transparent;
+    border-color: #d9d9d92f;
+    transition: 0s;
+    margin-right: 10px;
+}
+
+.ant-progress-inner {
+    background: rgb(230, 230, 230);
+}
+
+.song-info {
+    transition: 100ms;
+    font-size: 10px;
+    border-bottom: solid 1px rgb(230, 230, 230);
+}
+
+.song-info-big {
+    height: 20px;
+}
+
+.song-info-small {
+    height: 6px;
+}
+
+.volume-container {
+    bottom: 25px;
+    left: 7px;
+    position: absolute;
+    height: 200px;
+    width: auto;
 }

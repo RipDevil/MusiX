@@ -9,6 +9,7 @@
     "effector": "^20.8.1",
     "effector-react": "^20.5.1",
     "font-awesome": "^4.7.0",
+    "howler": "^2.1.2",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-animations": "^1.0.0",

@@ -7,9 +7,13 @@ const Header = () => {
     const [menuHover, setMenuHover] = React.useState(true);
     return (
         <Layout.Header onMouseEnter={() => setMenuHover(true)} onMouseLeave={() => setMenuHover(false)} className={menuHover ? "menu-thick" : ""}>
-            {menuHover && (
+            {menuHover ? (
                 <Row type="flex" justify="end" align="middle">
-                    <Button onClick={logout}>Logout</Button>
+                    <Button type="link" onClick={logout}>Logout</Button>
+                </Row>
+            ) : (
+                <Row type="flex" justify="end" align="middle">
+                    <i className="fa fa-chevron-down" style={{marginRight: "1rem"}}></i>
                 </Row>
             )}
         </Layout.Header>
