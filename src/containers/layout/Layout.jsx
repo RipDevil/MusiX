@@ -1,19 +1,17 @@
 import React from "react";
-import { Redirect, withRouter } from "react-router-dom";
-import { Row, Col, Layout } from "antd";
+import { Layout, Button } from "antd";
+
+import Header from "containers/layout/Header";
 
 const WithLayout = Component => {
     return () => (
-        <>
-            {/* {!IsLogged && <Redirect to="/login" />} */}
-            <Layout id="wrapper">
-                <Layout.Header className="musix-header">Header</Layout.Header>
-                    <Layout.Content>
+        <Layout id="wrapper">
+            <Header />
+                <Layout.Content className="p-3">
                         <Component />
-                    </Layout.Content>
-                <Layout.Footer className="musix-footer">Footer</Layout.Footer>
-            </Layout>
-        </>
+                </Layout.Content>
+            <Layout.Footer >Here will be player</Layout.Footer>
+        </Layout>
     );
 }
 

@@ -9,7 +9,6 @@ const MainPage = () => {
     return (
         <>
             <div>Musix</div>
-            <button onClick={logout}>logout</button>
         </>
     )
 }
