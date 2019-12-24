@@ -2,18 +2,19 @@ import React from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import { Row, Col, Layout } from "antd";
 
-const WithLayout = ({ isLogged, component }) => {
-
-    return (
+const WithLayout = Component => {
+    return () => (
         <>
-            {!isLogged && <Redirect to="/login" />}
-            <Layout>
+            {/* {!IsLogged && <Redirect to="/login" />} */}
+            <Layout id="wrapper">
                 <Layout.Header className="musix-header">Header</Layout.Header>
-                    <Layout.Content>{component}</Layout.Content>
+                    <Layout.Content>
+                        <Component />
+                    </Layout.Content>
                 <Layout.Footer className="musix-footer">Footer</Layout.Footer>
             </Layout>
         </>
     );
 }
 
-export default withRouter(WithLayout);
+export default WithLayout;

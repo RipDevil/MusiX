@@ -7,18 +7,19 @@ import AppConfig from 'containers/app/AppConfig';
 import NotFound from 'containers/notFound/NotFound';
 import Wrap from "containers/permissionWrapper/Wrapper";
 import Login from "containers/login/Login";
-import WithLayout from "containers/layout/Layout"
+import MainPage from "containers/mainPage/MainPage"
 
-import { $user, logout } from "models/user";
+import { $user } from "models/user";
 
 const App = ({ history }) => {
   const { isLogged } = useStore($user);
+  const Permission = Wrap(isLogged);
   return (
     <AppConfig>
       <Router history={history}>
         <Switch>
           <Route exact path={"/login"} component={() => <Login IsLoggedIn={isLogged} />} />
-          <Route exact path={"/"} component={() => <Wrap IsLoggedIn={isLogged} Component={() => (<WithLayout component={<div>MusiX</div>} isLoggedIn={isLogged} />)} />} />
+          <Route exact path={"/"} component={Permission(MainPage)} />
           <Route path='*' component={NotFound} />
         </Switch>
       </Router>
