@@ -2,7 +2,7 @@
 // I think, that it'd be better
 // apis stores etc
 import { createStore, createStoreObject, createApi, createEffect, createEvent } from "effector";
-import { authApi, callApi } from 'utils/ApiUtils';
+import { authApi } from 'utils/ApiUtils';
 
 import { $config } from "models/appConfig";
 

@@ -24,7 +24,7 @@ const Login = ({ IsLoggedIn }) => {
     const log = () => {
         // console.log(formStore);
         auth({
-            signIn: formStore.isRegister, 
+            signIn: formStore.isRegister,
             params: {
                 username: formStore.login.value,
                 password: formStore.password.value,
@@ -40,13 +40,14 @@ const Login = ({ IsLoggedIn }) => {
         })
         .catch((e) => { console.error(e.data.status, e.data.message) })
     };
+
     return (
         <>
             {IsLoggedIn ? <Redirect to="/" /> : ''}
             <Row className="centrify" type="flex" justify="center" align="middle">
                 <Col>
                     <Row type="flex" justify="center" align="middle">
-                        <Typography.Title onMouseEnter={GetRandomColor} onClick={() => window.open(config.links.external_link)} style={headerColor} className="login-header" copyable={false}>Musi<sup><strong><i className="fa fa-times" aria-hidden="true"></i></strong></sup></Typography.Title>
+                        <Typography.Title title="GitHub" onMouseEnter={GetRandomColor} onClick={() => window.open(config.links.external_link)} style={headerColor} className="login-header" copyable={false}>Musi<sup><strong><i className="fa fa-times" aria-hidden="true"></i></strong></sup></Typography.Title>
                     </Row>
 
                     {formStore.isRegister && <Row type="flex" justify="start" align="middle"><Typography.Text>Sign up</Typography.Text></Row>}

@@ -8,6 +8,7 @@
     "links": {
         "external_link": "//github.com/RipDevil",
         "register": "{MUSIC_SERVICE}/api/register",
-        "login": "{MUSIC_SERVICE}/api/authenticate"
+        "login": "{MUSIC_SERVICE}/api/authenticate",
+        "playlists": "{MUSIC_SERVICE}/api/playlists"
     }
 }
