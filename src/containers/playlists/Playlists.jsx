@@ -21,7 +21,7 @@ const Playlists = () => {
     return (
         <Row type="flex" justify="start" align="middle">
             <Col>
-                <Row>
+                <Row type="flex" justify="center" align="middle">
                     {tempPlaylists.length && tempPlaylists.map(item => (
                     <Col span={6} key={item.id} className="playlist">
                         {item.private && <i className="fa fa-2x fa-lock playlist-private"></i>}
