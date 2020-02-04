@@ -159,7 +159,7 @@
 .playlist {
     cursor: pointer;
     width: 220px;
-    height: 300px;
+    height: 220px;
     border-radius: 2px;
     transition: 200ms;
     background-image: url('./images/playlistexample.jpg');
