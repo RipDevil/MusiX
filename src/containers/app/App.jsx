@@ -1,27 +1,30 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { useStore } from "effector-react";
 import { Router, Route, Switch } from "react-router-dom";
 
 import AppConfig from 'containers/app/AppConfig';
-// import Loading from 'containers/loading/Loading';
-import NotFound from 'containers/notFound/NotFound';
-import Wrap from "containers/permissionWrapper/Wrapper";
-import Login from "containers/login/Login";
-import MainPage from "containers/mainPage/MainPage"
+import Loading from 'containers/loading/Loading';
+import Wrap from 'containers/permissionWrapper/Wrapper';
 
 import { $user } from "models/user";
 
+const NotFound = lazy(() => import('containers/notFound/NotFound'));
+const Login = lazy(() => import('containers/login/Login'));
+const MainPage = lazy(() => import('containers/mainPage/MainPage'));
+
 const App = ({ history }) => {
   const { isLogged } = useStore($user);
-  const Permission = Wrap(isLogged);
+  const Permission = Wrap(isLogged); // TODO: isLogged
   return (
     <AppConfig>
       <Router history={history}>
-        <Switch>
-          <Route exact path={"/login"} component={() => <Login IsLoggedIn={isLogged} />} />
-          <Route exact path={"/"} component={Permission(MainPage)} />
-          <Route path='*' component={NotFound} />
-        </Switch>
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route exact path={"/login"} component={() => <Login IsLoggedIn={isLogged} />} />
+            <Route exact path={"/"} component={Permission(MainPage)} />
+            <Route path='*' component={NotFound} />
+          </Switch>
+        </Suspense>
       </Router>
     </AppConfig>
   );
