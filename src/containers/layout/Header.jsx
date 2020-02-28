@@ -4,7 +4,7 @@ import { Row, Layout, Button } from "antd";
 import { logout } from "models/user";
 
 const Header = () => {
-    const [menuHover, setMenuHover] = React.useState(true);
+    const [menuHover, setMenuHover] = React.useState(false);
     return (
         <Layout.Header onMouseEnter={() => setMenuHover(true)} onMouseLeave={() => setMenuHover(false)} className={menuHover ? "menu-thick" : ""}>
             {menuHover ? (
