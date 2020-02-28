@@ -1,3 +1,8 @@
+/**
+ * Replaces all hosts in a config by hosts the config
+ * @param {string} config
+ * @returns {json} config
+ */
 export const replaceHost = config => {
     const MUSIC_SERVICE = config.data.services.music_service;
     return JSON.parse(JSON.stringify(config.data)
@@ -5,11 +10,21 @@ export const replaceHost = config => {
     );
 };
 
+/**
+ * Checks if an object is empty
+ * @param {object} obj
+ * @returns {boolean}
+ */
 export const isEmptyObj = obj => {
     const keys = Object.keys(obj);
     return !Boolean(keys.length);
 }
 
+/**
+ * Returnes a random RGB color
+ * @param {function} cb - callback
+ * @returns {string} in rgb(x, x, x)
+ */
 export const getRandomColor = cb => {
     let r = 100 + Math.round(Math.random() * 100),
         g = 100 + Math.round(Math.random() * 100),
@@ -20,15 +35,19 @@ export const getRandomColor = cb => {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
+/**
+ * Checks if function
+ * @param {*} functionToCheck 
+ * @returns {boolean}
+ */
 export const isFunction = (functionToCheck) => {
     return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 }
-//   function replaceHost(config) {
-//     const REST_URL = config.services.rest;
-//     const AUTH_URL = config.services.auth;
-//     return JSON.parse(JSON.stringify(config)
-//       .replace(/{REST_URL}/g, REST_URL)
-//       .replace(/{AUTH_URL}/g, AUTH_URL)
-//       .replace(/{PUBLIC_URL}/g, process.env.PUBLIC_URL)
-//     );
-//   }
+
+/**
+ * 
+ * @param {string} string 
+ * @param {string} defaultString 
+ * @returns {string}
+ */
+export const tidyString = (string, defaultString = "") => string ? string.trim().replace(/\s{2,}/g, ' ') : defaultString;
