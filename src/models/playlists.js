@@ -21,7 +21,7 @@ const createPlaylist = createEffect({
 
 $playlists
     .on(getPlaylists.done, (_, { result }) => result.data.content)
-    // .on(createPlaylist.done, (_, { result }) => )
+    .on(createPlaylist.done, () => getPlaylists());
 
 export {
     $playlists,
