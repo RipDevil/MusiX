@@ -187,11 +187,13 @@
 }
 
 .playlist-privacy {
+    cursor: pointer;
     position: absolute;
     transition: 200ms;
-    left: 10px;
+    left: 20px;
     top: 5px;
     color: rgb(255, 255, 255);
+    z-index: 2;
 }
 
 .playlist-privacy.private {
@@ -199,11 +201,13 @@
 }
 
 .playlist-delete {
+    cursor: pointer;
     position: absolute;
     transition: 200ms;
-    right: 10px;
+    right: 20px;
     top: 5px;
     color: rgba(0, 0, 0, 0.11);
+    z-index: 2;
 }
 
 .playlist-delete:hover {

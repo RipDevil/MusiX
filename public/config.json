@@ -11,6 +11,7 @@
         "login": "{MUSIC_SERVICE}/api/authenticate",
         "playlists": "{MUSIC_SERVICE}/api/playlists",
         "get_playlists": "{MUSIC_SERVICE}/api/playlist",
-        "delete_playlist": "{MUSIC_SERVICE}/api/playlist/{pid}"
+        "delete_playlist": "{MUSIC_SERVICE}/api/playlist/{pid}",
+        "playlist": "/playlist/:pid"
     }
 }
