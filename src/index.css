@@ -155,7 +155,6 @@
 }
 
 /* Playlists */
-
 .playlist {
     cursor: pointer;
     width: 220px;
@@ -172,7 +171,7 @@
 
 .playlist-title {
     position: absolute;
-    bottom: -50px;
+    bottom: -45px;
     width: 200px;
     left: 10px;
     margin: 0;
@@ -181,6 +180,7 @@
 .playlist-private {
     color: rgb(255, 5, 50);
     position: absolute;
+    transition: 200ms;
     left: 5px;
     top: 5px;
 }
