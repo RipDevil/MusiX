@@ -1,34 +1,49 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { Row, Col, Typography} from "antd";
-import background from 'images/playlistexample.jpg';
+import { Row, Col, Typography, Input } from "antd";
+
+import { $playlists, createPlaylist } from 'models/playlists'
+
+import { tidyString } from 'utils/utils';
+import { DEFAULT_ALBUM_NAME, NEW_ALBUM_NAME } from 'consts/utils';
 
 const Playlists = () => {
-    // TODO: from Music service!!!
-    const tempPlaylists = [
-        {
-            id: "1",
-            name: "Master of puppets",
-            private: false,
-        },
-        {
-            id: "2",
-            name: "Joji Slowdive",
-            private: true,
+    const playlists = useStore($playlists);
+
+    const [naName, setNaName] = React.useState(NEW_ALBUM_NAME);
+    const [naPrivacy, setNaPrivacy] = React.useState(false);
+
+    const inputOnBlur = () => setNaName(tidyString(naName, DEFAULT_ALBUM_NAME.replace(/{number}/i, playlists.length + 1)));
+    const inputOnChange = e => setNaName(e.target.value);
+    const submitNewPlaylist = e => {
+        if (e.keyCode === 13) {
+            setNaName(tidyString(naName, DEFAULT_ALBUM_NAME.replace(/{number}/i, playlists.length + 1)));
+            createPlaylist({ name: naName, description: "todo", internal: naPrivacy })
+                .then(() => {
+                    setNaName(NEW_ALBUM_NAME);
+                    setNaPrivacy(false);
+                });
         }
-    ];
+    };
 
     return (
         <Row type="flex" justify="start" align="middle">
             <Col>
                 <Row type="flex" justify="center" align="middle">
-                    {tempPlaylists.length && tempPlaylists.map(item => (
-                    <Col span={6} key={item.id} className="playlist">
-                        {item.private && <i title="Private album" className="fa fa-2x fa-lock playlist-private"></i>}
+                    <Col span={6} className="playlist playlist-new">
+                        <i onClick={() => setNaPrivacy(!naPrivacy)} title="Set privacy" className={`fa fa-2x fa-lock playlist-privacy ${naPrivacy ? "private" : ""}`} />
                         <Row type="flex" justify="center" align="middle" className="playlist-title">
-                            <Typography.Title ellipsis level={4}>{item.name}</Typography.Title>
+                            <Input maxLength={30} className="new-playlist-name" onKeyDown={submitNewPlaylist} onChange={inputOnChange} onBlur={inputOnBlur} value={naName} />
                         </Row>
-                    </Col>))}
+                    </Col>
+                    {playlists.length > 0 && playlists.map(item => (
+                        <Col span={6} key={item.id} className="playlist">
+                            {item.internal && <i title="Private album" className="fa fa-2x fa-lock playlist-privacy private"></i>}
+                            <i title={`Delete "${item.name}"`} className="fa fa-2x fa-times playlist-delete"></i>
+                            <Row type="flex" justify="center" align="middle" className="playlist-title">
+                                <Typography.Title title={item.name} ellipsis level={4}>{item.name}</Typography.Title>
+                            </Row>
+                        </Col>))}
                 </Row>
             </Col>
         </Row>

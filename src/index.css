@@ -165,6 +165,15 @@
     margin: 0 10px 60px 10px;
 }
 
+.playlist h4 {
+    user-select: none !important;
+}
+
+.playlist.playlist-new {
+    background-image: none !important;
+    background-color: #ecd1d1 !important;
+}
+
 .playlist:hover {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
 }
@@ -177,10 +186,45 @@
     margin: 0;
 }
 
-.playlist-private {
-    color: rgb(255, 5, 50);
+.playlist-privacy {
     position: absolute;
     transition: 200ms;
-    left: 5px;
+    left: 10px;
     top: 5px;
+    color: rgb(255, 255, 255);
+}
+
+.playlist-privacy.private {
+    color: rgb(255, 5, 50);
+}
+
+.playlist-delete {
+    position: absolute;
+    transition: 200ms;
+    right: 10px;
+    top: 5px;
+    color: rgba(0, 0, 0, 0.11);
+}
+
+.playlist-delete:hover {
+    color: rgb(0, 0, 0);
+}
+
+.new-playlist-name {
+    margin-bottom: 0.5em;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.4;
+    border: none;
+    background: transparent;
+    max-width: 200px;
+    text-align: center;
+    user-select: none !important;
+}
+
+.new-playlist-name:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
 }
