@@ -12,8 +12,6 @@ const Playlists = () => {
     const playlists = useStore($playlists);
     const { config } = useStore($config);
 
-    console.log(config);
-
     const [naName, setNaName] = React.useState(NEW_ALBUM_NAME);
     const [naPrivacy, setNaPrivacy] = React.useState(false);
 
