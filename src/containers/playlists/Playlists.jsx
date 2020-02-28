@@ -35,7 +35,7 @@ const Playlists = () => {
     return (
         <Row type="flex" justify="start" align="middle">
             <Col>
-                <Row type="flex" justify="center" align="middle">
+                <Row type="flex" justify="start" align="middle">
                     <Col span={6} className="playlist playlist-new">
                         <i onClick={() => setNaPrivacy(!naPrivacy)} title="Set privacy" className={`fa fa-2x fa-lock playlist-privacy ${naPrivacy ? "private" : ""}`} />
                         <Row type="flex" justify="center" align="middle" className="playlist-title">

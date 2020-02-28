@@ -1,5 +1,5 @@
 // TODO: refactor a bit
-// I think, that it'd be better
+// I think, that it could be better
 // apis stores etc
 import { createStore, createStoreObject, createApi, createEffect, createEvent } from "effector";
 import { authApi } from 'utils/ApiUtils';

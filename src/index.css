@@ -157,8 +157,8 @@
 /* Playlists */
 .playlist {
     cursor: pointer;
-    width: 220px;
-    height: 220px;
+    width: 214px;
+    height: 214px;
     border-radius: 2px;
     transition: 200ms;
     background-image: url('./images/playlistexample.jpg');
