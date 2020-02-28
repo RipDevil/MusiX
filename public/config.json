@@ -10,6 +10,7 @@
         "register": "{MUSIC_SERVICE}/api/register",
         "login": "{MUSIC_SERVICE}/api/authenticate",
         "playlists": "{MUSIC_SERVICE}/api/playlists",
-        "get_playlists": "{MUSIC_SERVICE}/api/playlist"
+        "get_playlists": "{MUSIC_SERVICE}/api/playlist",
+        "delete_playlist": "{MUSIC_SERVICE}/api/playlist/{pid}"
     }
 }

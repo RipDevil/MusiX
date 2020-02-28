@@ -19,12 +19,21 @@ const createPlaylist = createEffect({
     }
 });
 
+const deletePlaylist = createEffect({
+    handler: (pid) => {
+        const { config } = $config.getState();
+        return callApi({ url: config.links.delete_playlist.replace(/{pid}/g, pid), config: { method: "DELETE" } });
+    }
+});
+
 $playlists
     .on(getPlaylists.done, (_, { result }) => result.data.content)
-    .on(createPlaylist.done, () => getPlaylists());
+    .on(createPlaylist.done, () => getPlaylists())
+    .on(deletePlaylist.done, () => getPlaylists());
 
 export {
     $playlists,
     getPlaylists,
-    createPlaylist
+    createPlaylist,
+    deletePlaylist
 };
