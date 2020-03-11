@@ -38,7 +38,13 @@ const Login = ({ IsLoggedIn }) => {
                 token: data.token
             })
         })
-        .catch((e) => { console.error(e.data.status, e.data.message) })
+        .catch((e) => { 
+            if (e && e.data) {
+                console.error(e.data.status, e.data.message);
+            } else {
+                console.error(e);
+            }
+        })
     };
 
     return (
