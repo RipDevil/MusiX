@@ -1,0 +1,1 @@
+export { changePaths, configError, fetchConfig } from './config';

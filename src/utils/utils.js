@@ -4,8 +4,8 @@
  * @returns {json} config
  */
 export const replaceHost = config => {
-    const MUSIC_SERVICE = config.data.services.music_service;
-    return JSON.parse(JSON.stringify(config.data)
+    const MUSIC_SERVICE = config.services.music_service;
+    return JSON.parse(JSON.stringify(config)
       .replace(/{MUSIC_SERVICE}/g, MUSIC_SERVICE)
     );
 };

@@ -1,20 +1,18 @@
 import React from "react";
 import { useStore } from "effector-react";
 
-import { isEmptyObj } from "utils/utils";
 import Loading from "containers/loading/Loading";
-import {
-    $config,
-    fetchConfig
-} from 'models/appConfig';
+import { fetchConfig } from 'effects';
+import { $config } from 'stores';
 
 const AppConfig = ({ children }) => {
-    const { config, isFetching, error } = useStore($config);
-    React.useEffect(() => {
-        isEmptyObj(config) && !error && fetchConfig();
-    });
+    const { isFetching, content: config, error }  = useStore($config);
 
-    return isFetching ? <Loading /> : (error ? <div>{`Config not loaded with error: ${error}`}</div> : children);
+    React.useEffect(() => {
+        fetchConfig();
+    }, []);
+
+    return isFetching ? <Loading /> : (error || !config ? <div>{`Config not loaded with error: ${error}`}</div> : children);
 };
 
 export default AppConfig;
