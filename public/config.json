@@ -3,7 +3,7 @@
         "application": "0.0.1"
     },
     "services": {
-        "music_service": "http://213.59.157.203"
+        "music_service": "http://213.59.157.203/MusicXBackend/"
     },
     "links": {
         "external_link": "//github.com/RipDevil",
