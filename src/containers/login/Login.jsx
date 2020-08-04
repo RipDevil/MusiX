@@ -5,15 +5,17 @@ import { Row, Col, Typography, Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 import { getRandomColor } from "utils/utils";
-import { $config } from "stores";
+import { auth } from 'effects';
+import { $config, $user } from "stores";
 
 const Login = ({ IsLoggedIn }) => {
     const { content: links } = useStore($config);
+    const { content } = useStore($user);
     const [headerColor, setHeaderColor, GetRandomColor] = [...useState({ color: "#000" }), () => getRandomColor(setHeaderColor)];
     const [isRegister, setRegister] = useState(false);
 
-    const onSubmit = (result) => {
-        console.log('result :>> ', result);
+    const onSubmit = (params) => {
+        auth({ params, isRegister});
     };
 
     return (
@@ -37,7 +39,7 @@ const Login = ({ IsLoggedIn }) => {
                     {isRegister && <Row type="flex" justify="start" align="middle"><Typography.Text>Sign up</Typography.Text></Row>}
 
                     <Form onFinish={onSubmit} onFinishFailed={GetRandomColor} className="login-form">
-                        <Form.Item name="login" rules={[{required: true}]}>
+                        <Form.Item name="username" rules={[{required: true}]}>
                             <Input
                                 prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 placeholder="Login"
